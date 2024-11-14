@@ -51,6 +51,78 @@
     </style>
 </head>
 <body>
-    
+    ><header>
+        <h1>¿Necesitas relajarte y estirar el cuerpo?</h1>
+        <h2>Mejora tu salud mientras trabajas en la oficina</h2>
+    </header>
+    <main class="container">
+        <section>
+            <h2>Ejercicio sugerido</h2>
+            <p id="exercise">Realiza giros suaves de cuello de lado a lado para relajar la tensión.</p>
+            <img src="./Cuello.png" alt="Persona haciendo estiramiento de cuello">
+        </section>
+
+        <section>
+            <h2>Temporizador</h2>
+            <p class="timer" id="timer">Próximo ejercicio en: 60 segundos</p>
+            <button onclick="startTimer()">Iniciar Temporizador</button>
+        </section>
+        <section>
+            <h2>Más recursos</h2>
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=dz8ToolkO2Q" target="_blank">Música para relajarte</a></li>
+            </ul>
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=ArLEanykfJw&t=11s" target="_blank">Respiración para aliviar el estrés</a></li>
+            </ul>
+        </section>
+        <section>
+            <h2>¿Qué estiramiento prefieres?</h2>
+            <form id="stretch-form">
+                <label for="favorite-stretch">Tipo de estiramiento:</label>
+                <input type="text" id="favorite-stretch" name="favorite-stretch" placeholder="Ej. Cuello, brazos">
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    <main>
+        <footer>
+            <p>&copy; 2024 Office break. Todos los derechos reservados.</p>
+        </footer>
+        <script>
+            let timerInterval;
+            let timeLeft = 60;
+
+            function startTimer() {
+                if (timerInterval) clearInterval(timerInterval);
+                timerInterval = setInterval(() => {
+                    timeLeft--;
+                    document.getElementById("timer").textContent = `Próximo ejercicio en: ${timeLeft} segundos`;
+                    if (timeLeft === 0) {
+                        clearInterval(timerInterval);
+                        suggestExercise();
+                        timeLeft = 60;
+                    }
+                }, 1000);
+            }
+            function suggestExercise() {
+                const exercise = [
+                    "Estira tus brazos hacia arriba y siente la tensión liberándose.",
+                    "Gira los hombros suavemente en círculos hacia adelante y hacia atrás.",
+                    "Inclina la cabeza hacia cada lado y siente el alivio en el cuello.",
+                    "Gira la cintura hacia ambos lados para relajar la espalda."
+                ];
+                const randomExercise = exercise[Math.floor(Math.random() * exercises.length)];
+                document.getElementById("exercise").textContent = randomExercise;
+            }
+
+            document.getElementById("stretch-form").addEventListener("submit", function(event){
+                event.preventDefault();
+                const favoriteStretch = document.getElementById("favorite-stretch").value;
+            if (favoriteStretch) {
+                alert(`¡Gracias por compartir! Te gusta estirar: ${favoriteStretch}`);
+            }
+            });
+        </script>
+
 </body>
 </html>
